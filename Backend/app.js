@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const http = require('http');
 const { Server } = require('socket.io');
-const cors = require('cors');
 
 
 const app = express();
@@ -11,14 +10,6 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 app.use(bodyParser.json());
-
-app.use(cors());
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET','POST','PUT','DELETE');
-    next();
-});
 
 const url = process.env.MONGO_URL || 'mongodb://localhost:27017';
 const dbName = process.env.MONGO_DB || 'Anki';
@@ -169,7 +160,7 @@ app.use((req, res) => {
 // Server starten
 
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 6000;
 
 server.listen(PORT, () => {
     console.log(`Server gestartet auf Port ${PORT}`);
