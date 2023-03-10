@@ -160,7 +160,7 @@ app.use((req, res) => {
 // Server starten
 
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
     console.log(`Server gestartet auf Port ${PORT}`);
