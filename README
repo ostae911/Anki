@@ -14,15 +14,14 @@ Verwendung
 Erstellen Sie Decks, um verschiedene Themen oder Fächer zu organisieren.
 Fügen Sie Karten zu den Decks hinzu, die Informationen zum Lernen enthalten.
 Beginnen Sie eine Lernsession, um Karten aus einem ausgewählten Deck basierend auf der Spaced-Repetition-Methode zu überprüfen.
-
-            Bewerten Sie Ihr Verständnis jeder Karte nach dem Anzeigen.
-            Die Anwendung verwendet Ihre Bewertung, um die nächste Überprüfung für diese Karte zu planen.
-            Funktionen
-            Erstellen, bearbeiten und löschen von Decks und Karten.
-            Anzeigen von Karten basierend auf der Spaced-Repetition-Methode.
-            Benutzerdefinierte Bewertung von Karten, um den Lernfortschritt zu verfolgen.
-            Automatische Planung der nächsten Überprüfung von Karten basierend auf Benutzerbewertungen.
-            Technologien
-            Backend: Node.js, Express
-            Datenbank: MongoDB
-            Frontend: (fügen Sie hier die verwendeten Frontend-Technologien hinzu, z. B. React, Angular, Vue.js oder einfach HTML, CSS und JavaScript)
+Bewerten Sie Ihr Verständnis jeder Karte nach dem Anzeigen.
+Die Anwendung verwendet Ihre Bewertung, um die nächste Überprüfung für diese Karte zu planen.
+Funktionen
+Erstellen, bearbeiten und löschen von Decks und Karten.
+Anzeigen von Karten basierend auf der Spaced-Repetition-Methode.
+Benutzerdefinierte Bewertung von Karten, um den Lernfortschritt zu verfolgen.
+Automatische Planung der nächsten Überprüfung von Karten basierend auf Benutzerbewertungen.
+Technologien
+Backend: Node.js, Express
+Datenbank: MongoDB
+Frontend: (fügen Sie hier die verwendeten Frontend-Technologien hinzu, z. B. React, Angular, Vue.js oder einfach HTML, CSS und JavaScript)
