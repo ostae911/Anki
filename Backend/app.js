@@ -1,23 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const http = require('http');
-const { Server } = require('socket.io');
 const cors = require('cors');
+const http = require('http');
+const socketIO = require('socket.io');
+const bodyParser = require('body-parser');
 
+const decksRouter = require('./routes/decks');
+const cardsRouter = require('./routes/cards');
+const sessionsRouter = require('./routes/session');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
-
-app.use(bodyParser.json());
+const io = socketIO(server);
 
 app.use(cors());
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET','POST','PUT','DELETE');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     next();
 });
 
@@ -60,197 +61,22 @@ connection.once('open', async () => {
     }
 });
 
-const CardSchema = new mongoose.Schema({
-    question: {
-        type: String,
-        required: true,
-    },
-    answer: {
-        type: String,
-        required: true,
-    },
-    lastReviewed: {
-        type: Date,
-        default: Date.now,
-    },
-    reviewCount: {
-        type: Number,
-        default: 0,
-    },
+app.use('/decks', decksRouter);
+app.use('/cards', cardsRouter);
+app.use('/sessions', sessionsRouter);
+
+io.on('connection', (socket) => {
+    console.log('User connected');
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
+
+    // You can add more Socket.IO events here as needed.
 });
-
-const Card = mongoose.model('Kart', CardSchema);
-
-function selectNextCard(cards) {
-    if (!cards || !cards.lastReviewed) {
-        return null;
-    }
-
-    const now = Date.now();
-    const minInterval = [1, 2, 4, 7, 15];
-    const maxInterval = 30;
-    const easinessFactor = 2.5;
-
-    for (let i = 0; i < minInterval.length; i++) {
-        const interval = minInterval[i];
-        const nextReviewDate = new Date(cards.lastReviewed.getTime() + interval * 24 * 60 * 60 * 1000);
-        if (nextReviewDate <= now) {
-            const daysSinceLastReview = (now - cards.lastReviewed) / (24 * 60 * 60 * 1000);
-            const nextInterval = Math.min(Math.round(interval * cards.easinessFactor), maxInterval);
-            cards.reviewCount++;
-            cards.easinessFactor = cards.easinessFactor + (0.1 - (5 - cards.questionDifficulty) * (0.08 + (5 - cards.questionDifficulty) * 0.02));
-            cards.lastReviewed = now;
-            return cards.save();
-        }
-    }
-
-    return null;
-}
-
-
-
-app.get('/api/cards', async (req,res) => {
-    try {
-        const cards = await Card.find({});
-        const nextCard = selectNextCard(cards);
-        if (nextCard) {
-            res.json(nextCard);
-        } else {
-            res.json(cards);
-        }
-    } catch (err) {
-        console.error(`Fehler beim Abrufen der Karten: ${err}`);
-        res.status(500).json({ message: 'Interner Serverfehler' });
-    }
-});
-
-// Endpoint zum Aktualisieren einer Karte
-app.put('/api/cards/:id', (req, res) => {
-    Card.findByIdAndUpdate(req.params.id, {
-        question: req.body.question,
-        answer: req.body.answer
-    })
-        .then(card => {
-            res.json(card);
-            io.emit('updatedCard',card);
-        })
-        .catch(err => res.status(400).json({ message: 'Fehler beim Aktualisieren der Karte' }));
-});
-
-// Endpoint zum Löschen einer Karte
-app.delete('/api/cards/:id', (req, res) => {
-    Card.findByIdAndDelete(req.params.id)
-        .then(card => {
-            res.json(card);
-            io.emit('deletedCard', card);
-        })
-        .catch(err => res.status(400).json({ message: 'Fehler beim Löschen der Karte' }));
-});
-
-app.post('/api/cards', (req, res) => {
-    const { question, answer } = req.body;
-    const card = new Card({ question, answer });
-    card.save()
-        .then(savedCard => {
-            res.json(savedCard);
-            io.emit('newCard', savedCard);
-        })
-        .catch(err => {
-            console.error(`Fehler beim Erstellen der Karte: ${err}`);
-            res.status(500).json({ message: 'Interner Serverfehler' });
-        });
-});
-
-
-// Fehlerbehandlung für unbekannte Endpunkte
-app.use((req, res) => {
-    res.status(404).json({ message: 'Seite nicht gefunden' });
-});
-
-// Server starten
-
 
 const PORT = process.env.PORT || 4000;
-
 server.listen(PORT, () => {
-    console.log(`Server gestartet auf Port ${PORT}`);
-
+    console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
