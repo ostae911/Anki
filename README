@@ -9,7 +9,7 @@ Klonen Sie das Repository.
 Navigieren Sie in das Projektverzeichnis und führen Sie npm install aus, um alle erforderlichen Abhängigkeiten zu installieren.
 Starten Sie MongoDB auf Ihrem System oder verwenden Sie einen Cloud-basierten MongoDB-Dienst.
 Führen Sie npm start aus, um den Server zu starten.
-Öffnen Sie Ihren Webbrowser und navigieren Sie zu http://localhost:3000, um auf die Anwendung zuzugreifen.
+Öffnen Sie Ihren Webbrowser und navigieren Sie zu http://localhost:4000, um auf die Anwendung zuzugreifen.
 Verwendung
 Erstellen Sie Decks, um verschiedene Themen oder Fächer zu organisieren.
 Fügen Sie Karten zu den Decks hinzu, die Informationen zum Lernen enthalten.
