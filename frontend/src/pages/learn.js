@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
-import {Button} from "rsuite";
+import {Button, Container} from "rsuite";
+import App from "../App";
 import Navbar from "../components/navbar";
 
 function Lernen() {
@@ -35,17 +36,18 @@ function Lernen() {
 
         <>
             <Navbar/>
+            <Container className="lerncontainer">
             <h1> Welches Deck möchtest du lernen?</h1>
-
+            <div className="pt-3"></div>
                  {karten.map((deck) => (
                      <>
-                        <Button onClick={() => window.location.replace(`http://localhost:3000/${deck._id}`)}> {deck.name} </Button>
+                        <Button className="button"  onClick={() => window.location.replace(`http://localhost:3000/${deck._id}`)}> {deck.name} </Button>
                         <div className="pt-3"></div>
                       </>
                     )
                   )}
 
-
+                </Container>
 
         </>
     );

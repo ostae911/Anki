@@ -38,9 +38,9 @@ function Kartenstapel() {
     return(
         <>
             <Navbar/>
-
-            <h1> Hier siehst Du alle bisher hochgeladenen Karten. </h1>
-            <Container>
+            <Container className='lerncontainer'>
+            <h2> Hier siehst Du alle bisher hochgeladenen Karten. </h2>
+            
             {karten.map((karte) => (
                 <>
                     <div className="pt-3 col-lg-3"> </div>

@@ -156,7 +156,7 @@ export default class KarteHochladen extends React.Component {
 
                     <Navbar></Navbar>
                         <Container>
-                            <Container>
+                            <Container className='lerncontainer'>
                                 <div className={"pt-5"}></div>
 
                                 <h2> Zu welchem Deck möchtest du die Karte hinzufügen?</h2>
@@ -164,7 +164,8 @@ export default class KarteHochladen extends React.Component {
                                 {idDeck.map((deck) => (
 
                                     <>
-                                        <Button onClick={() => this.setClick(deck._id)}>{deck.name}</Button>
+                                        <div className="pt-3"></div>
+                                        <Button className='knopf' onClick={() => this.setClick(deck._id)}>{deck.name}</Button>
                                         <div className="pt-3"></div>
                                     </>
 
@@ -176,7 +177,7 @@ export default class KarteHochladen extends React.Component {
                                     <Form layout="vertical">
                                         <Form.Group controlId="textarea-6">
                                             <Form.ControlLabel> <h3>Vorderseite</h3></Form.ControlLabel>
-                                            <Form.Control
+                                            <Form.Control className='textfeld'
                                                 name="textarea"
                                                 rows={2}
                                                 id="front"
@@ -186,7 +187,7 @@ export default class KarteHochladen extends React.Component {
                                         </Form.Group>
                                         <Form.Group controlId="textarea-6">
                                             <Form.ControlLabel><h3>Rückseite</h3></Form.ControlLabel>
-                                            <Form.Control
+                                            <Form.Control className='textfeld'
                                                 name="textarea"
                                                 rows={7}
                                                 id="back"

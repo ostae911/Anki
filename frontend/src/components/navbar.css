@@ -33,6 +33,10 @@ wurde die Farbe auf Blau überschreiben*/ }
     align-items: center;
 }
 
+.navbar-logo:hover {
+    color: black;
+}
+
 .fa-typo3 {
     margin-left: 0.5rem;
     font-size: 1.8rem;

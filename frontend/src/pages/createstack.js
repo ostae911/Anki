@@ -127,15 +127,15 @@ export default class DeckHochladen extends React.Component {
                     </Modal>
 
                     <Navbar></Navbar>
-                    <Container>
+                    <Container className='lerncontainer'>
+                        <h2> Erstelle jetzt ein neues Lerndeck </h2>
                         <Container>
                             <div className={"pt-5"}></div>
-
 
                             <Form layout="vertical">
                                 <Form.Group controlId="textarea-6">
                                     <Form.ControlLabel> <h2>Name</h2></Form.ControlLabel>
-                                    <Form.Control
+                                    <Form.Control className='textfeld'
                                         name="textarea"
                                         rows={2}
                                         id="name"
@@ -145,7 +145,7 @@ export default class DeckHochladen extends React.Component {
                                 </Form.Group>
                                 <Form.Group controlId="textarea-6">
                                     <Form.ControlLabel><h2> Beschreibung</h2></Form.ControlLabel>
-                                    <Form.Control
+                                    <Form.Control className='textfeld'
                                         name="textarea"
                                         rows={7}
                                         id="description"

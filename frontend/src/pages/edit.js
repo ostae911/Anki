@@ -142,7 +142,7 @@ export default class Bearbeiten extends React.Component {
             </Modal>
 
             <Navbar></Navbar>
-            <Container>
+            <Container classname="lerncontainer">
                 <Container>
 
                     <div className={"pt-5"}></div>
@@ -150,7 +150,7 @@ export default class Bearbeiten extends React.Component {
                     <Form layout="vertical">
                         <Form.Group controlId="textarea-6">
                             <Form.ControlLabel> <h2>Vorderseite</h2></Form.ControlLabel>
-                            <Form.Control
+                            <Form.Control className="textfeld"
                                 name="textarea"
                                 rows={2}
                                 id="front"
@@ -160,7 +160,7 @@ export default class Bearbeiten extends React.Component {
                         </Form.Group>
                         <Form.Group controlId="textarea-6">
                             <Form.ControlLabel><h2>Rückseite</h2></Form.ControlLabel>
-                            <Form.Control
+                            <Form.Control className="textfeld"
                                 name="textarea"
                                 rows={7}
                                 id="back"

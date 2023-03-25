@@ -1,5 +1,6 @@
 import {Card, Button} from 'react-bootstrap';
 import React from "react";
+import './styling.css';
 
 
 /* In der card.js wird die Cpomponent Karte innerhalb einer Funktion genauer beschrieben

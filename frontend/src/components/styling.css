@@ -1,0 +1,116 @@
+/* Allgemeines Karten-Styling */
+.card {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+   
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Styling für das Karten-Bild */
+  .cardstyle {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  /* Hintergrundfarbe für den Karten-Body */
+  .bg1 {
+    background-color: #f1f3f1;
+  }
+  
+  /* Titel-Styling innerhalb der Karte */
+  .bgCardTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: green;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+  /* Text-Styling innerhalb der Karte */
+  .bgCard {
+    font-size: 1.2rem;
+    color: black;
+    margin-bottom: 1rem;
+  }
+  
+  /* Button-Styling innerhalb der Karte */
+  .btn {
+  background-color: rgba(119, 136, 112, 0.248);
+    border: none;
+    border-radius: 7px;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: rgba(10, 86, 10, 0.664);
+    color: white;
+    transition: background-color 0.3s ease;
+ }
+
+ .button {
+  background-color: rgba(119, 136, 112, 0.248);
+  border-radius: 7px;
+  color: black;
+  cursor: pointer;
+  display: inline-block; 
+  font-size: 1.5rem;
+  padding: 30px 30px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-top: 10pt;
+  width: 50%; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
+}
+
+.button:hover {
+  background-color: rgba(10, 86, 10, 0.664);
+  color: white;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.textfeld {
+  border-color: rgba(10, 86, 10, 0.664);;
+  
+}
+
+.textfeld:hover {
+  border-color: green;
+  transition: background-color 0.3s ease;
+}
+
+.knopf {
+  background-color: rgba(119, 136, 112, 0.248);
+  border-radius: 7px;
+  color: black;
+  cursor: pointer;
+  display: inline-block; 
+  font-size: 1rem;
+  padding: 30px 30px;
+  text-align: center;
+  margin-top: 10pt;
+  width: 40%; 
+  transition: background-color 0.3s ease;
+}
+
+.knopf:hover {
+  background-color: rgba(10, 86, 10, 0.664);
+  color: white;
+  transition: background-color 0.3s ease;
+}
