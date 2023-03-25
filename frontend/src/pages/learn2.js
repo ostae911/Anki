@@ -13,7 +13,6 @@ function KarteLernen() {
 
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [select, setSelect] = useState([]);
     const [download, setDownload] = useState([]);
 
     useEffect(() => {

@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 
 import Navbar from "../components/navbar";
 import Karte from "../components/card";
-
+import {Container} from "react-bootstrap";
+import Footer from "../components/footer";
 function Kartenstapel() {
 
     const [karten, setKarten] = useState([]);
@@ -39,7 +40,7 @@ function Kartenstapel() {
             <Navbar/>
 
             <h1> Hier siehst Du alle bisher hochgeladenen Karten. </h1>
-
+            <Container>
             {karten.map((karte) => (
                 <>
                     <div className="pt-3 col-lg-3"> </div>
@@ -53,7 +54,8 @@ function Kartenstapel() {
                     />
                 </>
             ))}
-
+            </Container>
+<Footer/>
         </>
     );
 }
