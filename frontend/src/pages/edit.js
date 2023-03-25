@@ -6,17 +6,19 @@ import Container from "react-bootstrap/Container";
 
 import { Button, Form, Input } from "rsuite";
 import Modal from "react-bootstrap/Modal";
+import card from "../components/card";
 
 const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 
 const AktuelleSeite = window.location.href;
 const LetzteSeite = AktuelleSeite.substring(AktuelleSeite.lastIndexOf("/") + 1);
+console.log(LetzteSeite);
 export default class Bearbeiten extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true,
-            inserate: [],
+            isLoading: false,
+            card: [],
             error: null,
             show: false,
             setShow: true,
@@ -39,7 +41,7 @@ export default class Bearbeiten extends React.Component {
 
     async handleClose() {
         this.setState({ show: false, showError: false });
-        window.location.replace(`http://localhost:3000/details/${LetzteSeite}`);
+        window.location.replace(`http://localhost:3000/`);
     }
     async handleError() {
         this.setState({ showError: true });
@@ -47,13 +49,13 @@ export default class Bearbeiten extends React.Component {
 
     async BackendDownload() {
         try {
-            const result = await fetch(`http://localhost:3001/inserate/${LetzteSeite}`);
+            const result = await fetch(`http://localhost:4000/cards/${LetzteSeite}`);
             if (result.status === 200) {
-                const inserate = await result.json();
-                console.log(inserate);
-                this.setState({ inserate });
+                const card2 = await result.json();
+                console.log(card2.card);
+                this.setState({ card: card2.card });
             } else {
-                throw Error("Keine Inserate gefunden!");
+                throw Error("Keine Card gefunden!");
             }
         } catch (error) {
             console.log(error);
@@ -64,151 +66,137 @@ export default class Bearbeiten extends React.Component {
 
     async BackendUpload() {
         try {
-            const result = await fetch(`http://localhost:3001/inserate/${LetzteSeite}`, {
+            const result = await fetch(`http://localhost:4000/cards/${LetzteSeite}`, {
                 method: "PUT",
                 mode: "cors",
                 headers: {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    createdOn: document.getElementById("createdOn").value,
-                    createdBy: document.getElementById("createdBy").value,
-                    softwareVersion: "test",
-                    customer: document.getElementById("customer").value,
-                    entry: {
-                        type: document.getElementById("type").value,
-                        address: document.getElementById("address").value,
-                        postal: document.getElementById("postal").value,
-                        city: document.getElementById("city").value,
-                        size: document.getElementById("size").value,
-                        comment: document.getElementById("comment").value,
-                        shortHand: document.getElementById("shortHand").value,
-                    },
+
+                    "deck": card.deck,
+                    "front": document.getElementById("front").value,
+                    "back": document.getElementById("back").value,
+
                 }),
             });
             if (result.status === 200) {
                 console.log("hat geklappt");
                 await this.handleShow();
-            }
-            if (result.status === 422) {
-                console.log("Du musst alle Felder ausfüllen!");
-                await this.handleError();
             } else {
                 console.log(result);
-                await this.handleShow();
-                console.log("hat geklappt");
+                await this.handleError();
+                throw Error("Der Server ist nicht hochgefahren!");
             }
         } catch (error) {
             console.log(error);
             this.setState({ error });
         }
-        this.setState({ isLoading: false });
     }
     render() {
-        const { err, isLoading, inserate, show, showError } = this.state;
+        const { err, isLoading, card, show, showError } = this.state;
         if (err) {
             return <div>Sorry, etwas ist schiefgelaufen!</div>;
         } else if (isLoading) {
             return <div>Loading....</div>;
         } else {
             return (
+
                 <>
-                    <Modal
-                        show={show}
-                        onHide={() => this.handleClose()}
-                        backdrop="static"
-                        keyboard={false}
+                <Modal
+                    show={show}
+                    onHide={() => this.handleClose()}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Erfolgreich hinzugefügt</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Deine neue Karte wurde erfolgreich auf der Lernplattform hinzugefügt. Beginne direkt mit dem Lernen!
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => this.handleClose()}>
+                            Schließen
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+            <Modal
+                show={showError}
+                onHide={() => this.handleClose()}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Upload fehlgeschlagen</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Uuuups, da ist etwas schiefgelaufen! Bitte kontrolliere, ob Du den Server gestartet hast!
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => this.handleClose()}>
+                        Schließen
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Navbar></Navbar>
+            <Container>
+                <Container>
+
+                    <div className={"pt-5"}></div>
+
+                    <Form layout="vertical">
+                        <Form.Group controlId="textarea-6">
+                            <Form.ControlLabel> <h2>Vorderseite</h2></Form.ControlLabel>
+                            <Form.Control
+                                name="textarea"
+                                rows={2}
+                                id="front"
+                                accepter={Textarea}
+                                defaultValue={card.front}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="textarea-6">
+                            <Form.ControlLabel><h2>Rückseite</h2></Form.ControlLabel>
+                            <Form.Control
+                                name="textarea"
+                                rows={7}
+                                id="back"
+                                accepter={Textarea}
+                                defaultValue={card.back}
+                            />
+                        </Form.Group>
+                    </Form>
+                </Container>
+
+                <Container>
+                    <div className="pt-3"></div>
+
+                    <Button className="btn" onClick={() => this.BackendUpload()}>
+                        Ändern
+                    </Button>
+
+                    <div className={"pt-2"}></div>
+
+                    <Button
+                        className="btn"
+                        onClick={() => window.location.replace("http://localhost:3000")}
                     >
-                        <Modal.Header closeButton>
-                            <Modal.Title>Änderung erfolgreich</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            Deine Lernkarte wurde erfolgreich geändert. Beginne direkt mit dem Lernen!
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={() => this.handleClose()}>
-                                Schließen
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                        Zurück zur Startseite
+                    </Button>
 
-                    <Modal
-                        show={showError}
-                        onHide={() => this.handleClose()}
-                        backdrop="static"
-                        keyboard={false}
-                    >
-                        <Modal.Header closeButton>
-                            <Modal.Title>Änderung fehlgeschlagen</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            Uuuups, da ist etwas schiefgelaufen! Bitte kontrolliere, ob der Server hochgefahren ist! Anders ist es leider nicht möglich 🥹
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={() => this.handleClose()}>
-                                Schließen
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    <div className={"pt-5"}></div>
+                </Container>
 
-                    <Navbar></Navbar>
 
-                        <Container>
-                                <div className={"pt-5"}></div>
-                                    <div className={"pt-5"}></div>
-                                    <h2 className="display-5"> Inserat bearbeiten</h2>
-                                    <h3>Städel & Wüst Immobilien</h3>
-                                    <hr className="solid"></hr>
-                                    <div className={"pt-5"}></div>
-                                    <Form layout="inline">
-                                        <Form.Group controlId="textarea-6">
-                                            <Form.ControlLabel>Erstellt am</Form.ControlLabel>
-                                            <Form.Control
-                                                name="textarea"
-                                                rows={1}
-                                                id="createdOn"
-                                                accepter={Textarea}
-                                                defaultValue={inserate.createdOn}
-                                                placeholder={inserate.createdOn}
-                                            />
-                                        </Form.Group>
-                                        <Form.Group controlId="textarea-6">
-                                            <Form.ControlLabel>Ersteller</Form.ControlLabel>
-                                            <Form.Control
-                                                name="textarea"
-                                                rows={1}
-                                                id="createdBy"
-                                                accepter={Textarea}
-                                                defaultValue={inserate.createdBy}
-                                                placeholder={inserate.createdBy}
-                                            />
-                                        </Form.Group>
-                                    </Form>
 
-                                    <Container>
-                                                <Button className="btn" onClick={() => this.BackendUpload()}>
-                                                    {" "}
-                                                    Absenden und Ändern
-                                                </Button>
-                                                <div className={"pt-2"}></div>
-                                                <Button
-                                                    className="btn"
-                                                    onClick={() =>
-                                                        window.location.replace(
-                                                            `http://localhost:3000/details/${LetzteSeite}`
-                                                        )
-                                                    }
-                                                >
-                                                    Abbrechen{" "}
-                                                </Button>
-                                                <div className={"pt-5"}></div>
-                                    </Container>
-                        </Container>
+            </Container>
 
-                        <div className={"pt-5"}></div>
+            <div className={"pt-5"}></div>
 
-                        <Footer></Footer>
-
+            <Footer></Footer>
                 </>
             );
         }

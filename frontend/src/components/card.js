@@ -24,7 +24,7 @@ function Karte(props) {
                 {/* Hier wird die Variable title gesetzt, sie erhält automatisch das von uns designte Styling steinbeis2-blue */}
                 <Card.Title className="bgCardTitle">
 
-                    Titel:             {props.createdAt}    <br></br>
+                    Titel:             {props.title}    <br></br>
 
                     <br></br>
                 </Card.Title>
@@ -34,11 +34,16 @@ function Karte(props) {
                 <Card.Text className="bgCard">
                   Text:   {props.comment}       <br></br>
 
+                    <div className="pt-3"></div>
+
+                    Bisher gelernt: {props.learned} <br></br>
+                    In Deck: {props.deck} <br></br>
+
                 </Card.Text>
                 {/* Hier wird der Button eingefügt, auch er erhält automatisch ein von uns vorher gesetztes Styling*/}
 
                 <div className={"pt-2"}></div>
-                <Button   onClick={() => window.location.replace(props.url)}>  Mehr </Button>
+                <Button   onClick={() => window.location.replace(props.url)}>  Bearbeiten </Button>
 
             </Card.Body>
         </Card>

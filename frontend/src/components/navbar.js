@@ -38,35 +38,37 @@ function Navbar() {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                         <li className='nav-item'>
-                            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                                Startseite
+                            <Link to='/learn' className='nav-links' onClick={closeMobileMenu}>
+                                Lernen
                             </Link>
                         </li>
                         <li className='nav-item'>
                             <Link
-                                to='/upload'
+                                to='/uploadDeck'
                                 className='nav-links '
                                 onClick={closeMobileMenu}
                             >
-                                Karte erstellen
+                                Deck Erstellen
                             </Link>
                         </li>
+
+                        <li className='nav-item'>
+                            <Link
+                                to='/uploadCard'
+                                className='nav-links '
+                                onClick={closeMobileMenu}
+                            >
+                                 Karte Erstellen
+                            </Link>
+                        </li>
+
                         <li className='nav-item'>
                             <Link
                                 to='/stack'
                                 className='nav-links'
                                 onClick={closeMobileMenu}
                             >
-                                Kartenstapel
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link
-                                to='/aboutus'
-                                className='nav-links'
-                                onClick={closeMobileMenu}
-                            >
-                                Über uns
+                                Decks und Karten
                             </Link>
                         </li>
 

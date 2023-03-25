@@ -12,6 +12,9 @@ import KarteHochladen from "./pages/createcard";
 import Bearbeiten from "./pages/edit";
 import Kartenstapel from "./pages/stack";
 import UeberUns from "./pages/aboutus";
+import DeckHochladen from "./pages/createstack";
+import Lernen from "./pages/learn";
+import KarteLernen from "./pages/learn2";
 function App() {
   return (
 
@@ -23,11 +26,14 @@ function App() {
             <BrowserRouter>
               <Routes>
 
-                    <Route path="/" element={<Homepage />}> </Route>
-                    <Route path="/upload" element={<KarteHochladen/>}> </Route>
+                    <Route path="/" element={<Homepage/>}> </Route>
+                    <Route path="/uploadCard" element={<KarteHochladen/>}> </Route>
+                    <Route path="/uploadDeck" element={<DeckHochladen/>}> </Route>
                     <Route path="/edit/:id" element={<Bearbeiten/>}> </Route>
                     <Route path="/stack" element={<Kartenstapel/>}> </Route>
                     <Route path="/aboutus" element={<UeberUns/>}> </Route>
+                    <Route path="/learn" element={<Lernen/>}> </Route>
+                    <Route path="/:session" element={<KarteLernen/>}> </Route>
 
               </Routes>
             </BrowserRouter>
