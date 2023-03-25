@@ -3,6 +3,7 @@ import {useState} from "react";
 import Karte from "../components/card";
 import {Button} from "rsuite";
 import Navbar from "../components/navbar";
+import Modal from "react-bootstrap/Modal";
 
 const AktuelleSeite = window.location.href;
 const LetzteSeite = AktuelleSeite.substring(AktuelleSeite.lastIndexOf("/") + 1);
@@ -23,6 +24,34 @@ function KarteLernen() {
                     const selectDownload = await result.json();
                     console.log(selectDownload.card);
                     setDownload(selectDownload.card);
+                    if (typeof selectDownload.card == 'undefined' ) {
+                        const show = true;
+                        async function handleClose() {
+                            window.location.replace("http://localhost:3000/learn")
+                        }
+
+                        return(
+                            <Modal
+                                show={show}
+                                onHide={() => handleClose()}
+                                backdrop="static"
+                                keyboard={false}
+                            >
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Upload fehlgeschlagen</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    Uuuups, da ist etwas schiefgelaufen! Bitte kontrolliere, ob Du den Server gestartet hast!
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="primary" onClick={() => this.handleClose()}>
+                                        Schließen
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+
+                        );
+                    }
                 } else {
                     throw Error("Keine Inserate gefunden!");
                 }

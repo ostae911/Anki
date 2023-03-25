@@ -48,7 +48,7 @@ function Navbar() {
                                 className='nav-links '
                                 onClick={closeMobileMenu}
                             >
-                                Deck Erstellen
+                                Decks erstellen
                             </Link>
                         </li>
 
@@ -58,7 +58,7 @@ function Navbar() {
                                 className='nav-links '
                                 onClick={closeMobileMenu}
                             >
-                                 Karte Erstellen
+                                 Karten erstellen
                             </Link>
                         </li>
 
@@ -68,7 +68,7 @@ function Navbar() {
                                 className='nav-links'
                                 onClick={closeMobileMenu}
                             >
-                                Decks und Karten
+                                Karten ändern
                             </Link>
                         </li>
 
