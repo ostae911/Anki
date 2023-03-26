@@ -29,7 +29,6 @@ function KarteLernen() {
                 if (result.status === 204) {
                     await console.log("schon alles gelernt");
                     await handleShow();
-
                 }
                 else {
                     throw Error("Fehler");
