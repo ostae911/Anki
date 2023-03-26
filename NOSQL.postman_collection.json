@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "4ba715a7-3936-45f8-84d8-bdac395195b7",
+		"name": "NOSQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Karten",
+			"item": [
+				{
+					"name": "Karte erstellen",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deck\": \"6414aa742e56a9eb779bf405\",\n  \"front\": \"Was die Hauptstandt von Polen\",\n  \"back\": \"Warschau\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alle Karten Abrufen",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Bestimmte Karte Abrufen",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Karte bearbeiten",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deck\": \"6414aa742e56a9eb779bf405\",\n  \"front\": \"Was die Hauptstandt von Mexiko\",\n  \"back\": \"Mexiko-City\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/cards/64159ac897f708e23949393a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"cards",
+								"64159ac897f708e23949393a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Karte löschen",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/cards/6414ab1e2e56a9eb779bf407",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"cards",
+								"6414ab1e2e56a9eb779bf407"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Decks",
+			"item": [
+				{
+					"name": "Neues Deck erstellen",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"IT-Sicherheit\",\n  \"description\": \"IT-Sicherheit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/decks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"decks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deck bearbeiten",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"IT-Sicherheit\",\n  \"description\": \"IT-Sicherheit zu den Vorlesungen\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/decks/64159c8afc30feebc4ead9c6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"decks",
+								"64159c8afc30feebc4ead9c6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deck löschen",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/decks/6414aa742e56a9eb779bf405",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"decks",
+								"6414aa742e56a9eb779bf405"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alle Decks abrufen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/decks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"decks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lernen und bewerten",
+			"item": [
+				{
+					"name": "Rate Card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sessions/6414ab762e56a9eb779bf40a/review",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sessions",
+								"6414ab762e56a9eb779bf40a",
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lernen",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\"_id\": \"6414ab1e2e56a9eb779bf407\",\n        \"front\": \"Was ist die Hauptstadt von Deutschland?\",\n        \"back\": \"Berlin\",\n        \"deck\": \"6414aa742e56a9eb779bf405\",\n        \"interval\": 1,\n        \"factor\": 1.96,\n        \"reviewCount\": 1,\n        \"nextReviewDate\": \"2023-03-18T22:35:52.004Z\",\n        \"__v\": 0}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sessions/6414aa742e56a9eb779bf405/next-card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sessions",
+								"6414aa742e56a9eb779bf405",
+								"next-card"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
