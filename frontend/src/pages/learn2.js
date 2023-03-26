@@ -14,6 +14,8 @@ function KarteLernen() {
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [download, setDownload] = useState([]);
+    const [show, setShow] = useState(false);
+
 
     useEffect(() => {
         const Session = async () => {
@@ -23,35 +25,13 @@ function KarteLernen() {
                     const selectDownload = await result.json();
                     console.log(selectDownload.card);
                     setDownload(selectDownload.card);
-                    if (typeof selectDownload.card == 'undefined' ) {
-                        const show = true;
-                        async function handleClose() {
-                            window.location.replace("http://localhost:3000/learn")
-                        }
+                }
+                if (result.status === 204) {
+                    await console.log("schon alles gelernt");
+                    await handleShow();
 
-                        return(
-                            <Modal
-                                show={show}
-                                onHide={() => handleClose()}
-                                backdrop="static"
-                                keyboard={false}
-                            >
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Upload fehlgeschlagen</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    Uuuups, da ist etwas schiefgelaufen! Bitte kontrolliere, ob Du den Server gestartet hast!
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="primary" onClick={() => this.handleClose()}>
-                                        Schließen
-                                    </Button>
-                                </Modal.Footer>
-                            </Modal>
-
-                        );
-                    }
-                } else {
+                }
+                else {
                     throw Error("Keine Inserate gefunden!");
                 }
             } catch (error) {
@@ -63,6 +43,14 @@ function KarteLernen() {
         Session();
     }, []);
 
+    async function handleShow() {
+        setShow(true);
+    }
+
+    async function handleClose() {
+        setShow(false);
+        window.location.replace("http://localhost:3000/learn")
+    }
     async function rate(rating) {
         try {
             const result = await fetch(`http://localhost:4000/sessions/${download._id}/review`,
@@ -82,7 +70,9 @@ function KarteLernen() {
                 await console.log("hat geklappt");
                 window.location.replace(AktuelleSeite);
 
-            } else {
+            }
+
+            else {
                 console.log(result);
                 throw Error("Der Server ist nicht hochgefahren!");
             }
@@ -95,6 +85,25 @@ function KarteLernen() {
 
     return (
         <>
+            <Modal
+                show={show}
+                onHide={() => handleClose()}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Done for Today!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Du hast bereits alle Karten dieses Decks gelernt. Starte mit einem anderen Deck!
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => handleClose()}>
+                        Schließen
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
             <Navbar/>
 
 
@@ -107,9 +116,9 @@ function KarteLernen() {
                         learned={download.reviewCount}
                     />
 
-                    <Button onClick={() => rate(1)}>Leicht</Button>
+                    <Button onClick={() => rate(3)}>Leicht</Button>
                     <Button onClick={() => rate(2)}>Mittel</Button>
-                    <Button onClick={() => rate(3)}>Schwer</Button>
+                    <Button onClick={() => rate(1)}>Schwer</Button>
                 </>
 
         </>

@@ -18,7 +18,7 @@ exports.getNextCardForReview = async (req, res) => {
         if (card) {
             res.status(200).json({ card });
         } else {
-            res.status(200).json({ message: 'Für dieses Deck gibt es heute nichts mehr zu tun.' });
+            res.status(204).json({ message: 'Für dieses Deck gibt es heute nichts mehr zu tun.' });
         }
     } catch (error) {
         res.status(400).json({ error: error.message });

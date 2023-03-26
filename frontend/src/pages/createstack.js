@@ -10,11 +10,6 @@ const Textarea = React.forwardRef((props, ref) => (
     <Input {...props} as="textarea" ref={ref} required />
 ));
 
-/* Auf dieser Seite wird das Inserieren im Frontend ermöglicht. Es wird auf die Form-Inputs von Rsuite zurückgegriffen, diese mit default Werten belegt,
-um Tipps zu geben. Außerdem werden wieder die Components Navbar sowie Footer augerufen.
-Es befinden sich mehrere Modals in der Seite, um eine passende Antwort je nach Server-Response zu liefern
- */
-
 
 export default class DeckHochladen extends React.Component {
     constructor(props) {
@@ -29,7 +24,6 @@ export default class DeckHochladen extends React.Component {
 
         this.BackendUpload = this.BackendUpload.bind(this);
         {
-            /*keine Ahnung was das macht aber ist wichtig */
         }
     }
 
@@ -42,7 +36,7 @@ export default class DeckHochladen extends React.Component {
 
     async handleClose() {
         this.setState({ show: false, showError: false });
-        window.location.replace('http://localhost:3000/')
+        window.location.replace('http://localhost:3000/learn')
     }
     async handleError() {
         this.setState({ showError: true });
@@ -168,7 +162,7 @@ export default class DeckHochladen extends React.Component {
 
                             <Button
                                 className="btn"
-                                onClick={() => window.location.replace("http://localhost:3000")}
+                                onClick={() => window.location.replace("http://localhost:3000/learn")}
                             >
                                 Zurück zur Startseite{" "}
                             </Button>

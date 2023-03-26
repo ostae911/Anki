@@ -5,16 +5,10 @@ import Footer from "../components/footer";
 import Container from "react-bootstrap/Container";
 import { Form, Input, Button } from "rsuite";
 import Modal from "react-bootstrap/Modal";
-import Karte from "../components/card";
 
 const Textarea = React.forwardRef((props, ref) => (
     <Input {...props} as="textarea" ref={ref} required />
 ));
-
-/* Auf dieser Seite wird das Inserieren im Frontend ermöglicht. Es wird auf die Form-Inputs von Rsuite zurückgegriffen, diese mit default Werten belegt,
-um Tipps zu geben. Außerdem werden wieder die Components Navbar sowie Footer augerufen.
-Es befinden sich mehrere Modals in der Seite, um eine passende Antwort je nach Server-Response zu liefern
- */
 
 
 export default class KarteHochladen extends React.Component {
@@ -50,7 +44,7 @@ export default class KarteHochladen extends React.Component {
 
     async handleClose() {
         this.setState({ show: false, showError: false });
-        window.location.replace('http://localhost:3000/stack')
+        window.location.replace('http://localhost:3000/learn')
     }
     async handleError() {
         this.setState({ showError: true });
@@ -159,7 +153,7 @@ export default class KarteHochladen extends React.Component {
                             <Container className='lerncontainer'>
                                 <div className={"pt-5"}></div>
 
-                                <h2> Zu welchem Deck möchtest du die Karte hinzufügen?</h2>
+                                <h2> Zu welchem Deck möchtest Du die Karte hinzufügen?</h2>
 
                                 {idDeck.map((deck) => (
 

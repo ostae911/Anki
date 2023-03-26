@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
 import {Button, Container} from "rsuite";
-import App from "../App";
 import Navbar from "../components/navbar";
 
 function Lernen() {
@@ -9,8 +8,6 @@ function Lernen() {
     const [karten, setKarten] = useState([]);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [select, setSelect] = useState([]);
-    const [download, setDownload] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,7 +34,7 @@ function Lernen() {
         <>
             <Navbar/>
             <Container className="lerncontainer">
-            <h1> Welches Deck möchtest du lernen?</h1>
+            <h2> Welches Deck möchtest Du lernen?</h2>
             <div className="pt-3"></div>
                  {karten.map((deck) => (
                      <>

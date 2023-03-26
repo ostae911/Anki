@@ -41,7 +41,7 @@ export default class Bearbeiten extends React.Component {
 
     async handleClose() {
         this.setState({ show: false, showError: false });
-        window.location.replace(`http://localhost:3000/`);
+        window.location.replace(`http://localhost:3000/learn`);
     }
     async handleError() {
         this.setState({ showError: true });
@@ -182,7 +182,7 @@ export default class Bearbeiten extends React.Component {
 
                     <Button
                         className="btn"
-                        onClick={() => window.location.replace("http://localhost:3000")}
+                        onClick={() => window.location.replace("http://localhost:3000/learn")}
                     >
                         Zurück zur Startseite
                     </Button>

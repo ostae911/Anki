@@ -11,7 +11,6 @@ import Homepage from './components/navbar'
 import KarteHochladen from "./pages/createcard";
 import Bearbeiten from "./pages/edit";
 import Kartenstapel from "./pages/stack";
-import UeberUns from "./pages/aboutus";
 import DeckHochladen from "./pages/createstack";
 import Lernen from "./pages/learn";
 import KarteLernen from "./pages/learn2";
@@ -23,15 +22,16 @@ function App() {
           <div className="Container">
             {/*Hier werden durch die im React-Router-Dom importierten Routingfunktionalitäten, übergeordnete Pfade zu den einzelnen Seiten
         deklariert, welche somit auf den Seiten, in der Navbar, dem Footer etc. aufgerufen werden können.*/}
+
             <BrowserRouter>
               <Routes>
+
 
                     <Route path="/" element={<Homepage/>}> </Route>
                     <Route path="/uploadCard" element={<KarteHochladen/>}> </Route>
                     <Route path="/uploadDeck" element={<DeckHochladen/>}> </Route>
                     <Route path="/edit/:id" element={<Bearbeiten/>}> </Route>
                     <Route path="/stack" element={<Kartenstapel/>}> </Route>
-                    <Route path="/aboutus" element={<UeberUns/>}> </Route>
                     <Route path="/learn" element={<Lernen/>}> </Route>
                     <Route path="/:session" element={<KarteLernen/>}> </Route>
 
