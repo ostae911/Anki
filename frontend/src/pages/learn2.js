@@ -114,6 +114,7 @@ function KarteLernen() {
                         title={download.front}
                         comment={download.back}
                         learned={download.reviewCount}
+                        url={`http://localhost:3000/edit/${download._id}`}
                     />
 
                     <Button onClick={() => rate(3)}>Leicht</Button>
