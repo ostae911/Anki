@@ -32,7 +32,7 @@ function KarteLernen() {
 
                 }
                 else {
-                    throw Error("Keine Inserate gefunden!");
+                    throw Error("Fehler");
                 }
             } catch (error) {
                 console.log(error);

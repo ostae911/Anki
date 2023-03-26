@@ -18,7 +18,7 @@ function Lernen() {
                     console.log(kartenDownload.decks);
                     setKarten(kartenDownload.decks);
                 } else {
-                    throw Error("Keine Inserate gefunden!");
+                    throw Error("Keine Fehler gefunden!");
                 }
             } catch (error) {
                 console.log(error);
